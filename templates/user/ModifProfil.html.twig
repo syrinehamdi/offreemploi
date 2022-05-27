@@ -1,0 +1,37 @@
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+{% if app.user %}
+
+
+<div class="section-title">
+          <h2>Modification de mes informations </h2>
+        </div>
+
+
+
+<section class="login-area pt-80px pb-80px position-relative">
+    <div class="shape-bg position-absolute top-0 left-0 w-100 h-100 opacity-2 z-index-n1"></div>
+    <div class="container">
+        {{ form_start(FormModif, {"attr": {"class": "card card-item login-form"}}) }}
+             <div class="form-group">
+                            <button  id="send-message-btn" class="btn theme-btn w-100" type="submit">
+                                 {{form_widget(FormModif.save)}} 
+                                <i class="la la-arrow-right icon ml-1"></i>
+                            </button>
+                        </div>
+        {{ form_end(FormModif) }}
+
+
+       
+    </div><!-- end container -->
+</section>
+
+
+
+
+
+
+                        {% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+
+<div><br><br>
+ <a href="{{ url ('createAnnonce') }}" class="book-a-table-btn scrollto">Ajouter une annonce</a>
+</div>
+      <div class="section-title">
+          <h2>Toutes les annonces : <span>{{ annonces | length }} annonces</span></h2>
+        </div>
+
+        {% for annonce in annonces %}
+        poste : {{ annonce.poste  }}<br>
+        salaire :{{ annonce.salaire  }} Dt
+
+         <a href="{{ url ("detailAnnonce", {"slug": annonce.poste | slug("-") | lower, "id": annonce.id}) }}" class="book-a-table-btn scrollto">Détail</a>
+
+
+        <hr>
+{% endfor %}
+
+{% endblock %}

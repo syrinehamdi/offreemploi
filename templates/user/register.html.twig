@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<section class="login-area pt-80px pb-80px position-relative">
+    <div class="shape-bg position-absolute top-0 left-0 w-100 h-100 opacity-2 z-index-n1"></div>
+    <div class="container">
+        {{ form_start(registrationForm, {"attr": {"class": "card card-item login-form"}}) }}
+             <div class="form-group">
+                            <button  id="send-message-btn" class="btn theme-btn w-100" type="submit">
+                                 {{form_widget(registrationForm.save)}} 
+                                <i class="la la-arrow-right icon ml-1"></i>
+                            </button>
+                        </div>
+        {{ form_end(registrationForm) }}
+
+
+       
+        <p class="text-black text-center fs-15">Vous avez un compte ? <a href="login.html" class="text-color hover-underline">Connexion</a></p>
+    </div><!-- end container -->
+</section>
+{% endblock %}

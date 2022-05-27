@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<section class="login-area pt-80px pb-80px position-relative">
+ <h2> liste Contact </h2>
+ <hr>
+
+ {% for contact in contacts %}
+        nom {{ contact.user.nom  }}<br>
+        email {{ contact.user.email  }}<br>
+        telephone {{ contact.user.telephone  }}<br>
+       poste {{ contact.annonce.poste  }}<br>
+       salaire {{ contact.annonce.salaire  }}<br>
+       message {{ contact.message  }}<br>
+
+        <hr>
+{% endfor %}
+</section>
+{% endblock %}

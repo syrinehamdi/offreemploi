@@ -1,0 +1,65 @@
+
+{% extends "base.html.twig" %}
+
+{% block body %}
+profil <hr> <hr> <hr> <hr>
+{% if app.user %}
+{{ app.user.nom}}<br>
+{{ app.user.prenom}} <br>
+{{ app.user.email}}<br>
+{{ app.user.telephone}}<br><br><br>
+         <a href="{{ path ('modifierProfil', {'id': app.user.id}) }}" class="book-a-table-btn scrollto">Modifier mes informations</a>
+
+<br><br><br>
+<hr> 
+{% if app.user.type=="Recruteur" %}
+ <h2>Mes annonce</h2><hr>
+ {{ app.user.id}} 
+
+
+
+ {% for annonce in annonces %}
+        poste : {{ annonce.poste  }}<br>
+        salaire :{{ annonce.salaire  }} Dt
+
+         <a href="{{ url ("detailAnnonce", {"slug": annonce.poste | slug("-") | lower, "id": annonce.id}) }}" class="book-a-table-btn scrollto">détail</a>
+         <a href="{{ path ('deleteAnnonce', {'id': annonce.id}) }}" class="book-a-table-btn scrollto">Supprimer</a>
+                  <a href="{{ path ('modifAnnonce', {'id': annonce.id}) }}" class="book-a-table-btn scrollto">Modifier</a>
+
+
+
+        <hr>
+{% endfor %}
+                        {% endif %}
+
+
+
+
+{% if app.user.type=="Candidat" %}
+ <h2>Mes Contact</h2><hr>
+ {{ app.user.id}} 
+
+{% for contact in contacts %}
+        message : {{ contact.message  }}<br>
+        date envoyé :{{ contact.dateAjout | ago(locale="fr") }} <br>
+        Poste :{{ contact.annonce.poste }} <br>
+        Entreprise :{{ contact.annonce.entreprise }} <br>
+
+
+
+         <a href="{{ path ('deleteContact', {'id': contact.id}) }}" class="book-a-table-btn scrollto">Supprimer</a>
+
+        <hr>
+{% endfor %}
+
+
+
+
+
+
+
+
+                        {% endif %}
+
+                        {% endif %}
+{% endblock %}

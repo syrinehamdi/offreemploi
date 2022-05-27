@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ContactController!{% endblock %}
+
+{% block body %}
+<h1>Ajouter un Contact</h1>
+<br><br>
+
+<section class="question-area pt-80px pb-40px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+
+                {% for message in app.flashes("_message") %}
+
+                    <div class="alert alert-success">{{message}}
+                    </div>
+                {% endfor %}
+                <div class="card card-item">
+                         {{form_start(formContact,{"attr": {"class":"card-body"}})}}
+
+                        
+                         <div class="input-box pt-2">
+                            <div class="btn-box">
+                              {{form_widget(formContact.save)}} 
+                            </div>
+                        </div>
+                    {{ form_end(formContact)}}
+                    
+                </div><!-- end card -->
+            </div><!-- end col-lg-8 -->
+        
+        
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end question-area -->
+<!-- ================================
+         END QUESTION AREA
+================================= -->
+
+{% endblock %}

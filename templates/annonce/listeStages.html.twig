@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+ liste des stages
+
+
+      <div class="section-title">
+          <h2>Toutes les stages : <span>{{ stages | length }} stages</span></h2>
+        </div>
+
+
+        {% for stage in stages %}
+        poste : {{ stage.poste  }}<br>
+        salaire :{{ stage.salaire  }} Dt
+
+         <a href="{{ url ("detailAnnonce", {"slug": stage.poste | slug("-") | lower, "id": stage.id}) }}" class="book-a-table-btn scrollto">détail</a>
+
+
+        <hr>
+        {% endfor %}
+
+{% endblock %}

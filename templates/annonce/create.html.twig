@@ -1,0 +1,47 @@
+
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+
+
+
+
+
+
+<!-- ================================
+         START QUESTION AREA
+================================= -->
+<section class="question-area pt-80px pb-40px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+
+                {% for message in app.flashes("_message") %}
+
+                    <div class="alert alert-success">{{message}}
+                    </div>
+                {% endfor %}
+                <div class="card card-item">
+                         {{form_start(formAnnonce,{"attr": {"class":"card-body"}})}}
+
+                        
+                         <div class="input-box pt-2">
+                            <div class="btn-box">
+                              {{form_widget(formAnnonce.save,{"label":labelSubmit})}} 
+                            </div>
+                        </div>
+                    {{ form_end(formAnnonce)}}
+                    
+                </div><!-- end card -->
+            </div><!-- end col-lg-8 -->
+        
+        
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section><!-- end question-area -->
+<!-- ================================
+         END QUESTION AREA
+================================= -->
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+
+{% block title %}
+Détail annonce
+{% endblock %}
+
+{% block body %}
+<div class="section-title">
+          <h2>détail d'annonce : <span>{{ annonce.poste }} </span></h2>
+        </div>
+
+poste: {{annonce.poste}}<br>
+description: {{annonce.description}}<br>
+type contrat: {{annonce.typeContrat}}<br>
+adresse: {{annonce.adresse}}<br>
+salaire: {{annonce.salaire }} Dt<br>
+dateAjout: {{annonce.dateAjout | ago(locale="fr")}}<br>
+<br><br>
+
+
+{% if app.user.type=="Candidat" %}
+
+  <a href="{{ path ("createContact", {"id": annonce.id}) }}" class="book-a-table-btn scrollto">Contacter</a>
+
+<br><br>
+{% endif %}
+{% endblock %}
