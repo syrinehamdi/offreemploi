@@ -2,19 +2,41 @@
 
 
 {% block body %}
-<section class="login-area pt-80px pb-80px position-relative">
- <h2> liste Contact </h2>
- <hr>
+<br>
 
- {% for contact in contacts %}
-        nom {{ contact.user.nom  }}<br>
-        email {{ contact.user.email  }}<br>
-        telephone {{ contact.user.telephone  }}<br>
-       poste {{ contact.annonce.poste  }}<br>
-       salaire {{ contact.annonce.salaire  }}<br>
-       message {{ contact.message  }}<br>
+<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+              
+                <h1 class="mb-5">Liste des contacts</h1>
+            </div> 
 
-        <hr>
+
+
+
+
+    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container ">
+        <div class="row ">
+
+            {% for contact in contacts %}
+            <div class="testimonial-item text-right p-2 col-6 ">
+                    
+                <div class="testimonial-text bg-light p-3">
+
+                <h6 class="flex-fill  border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>{{ contact.dateAjout | date('Y-m-d H:i')  }}</small>
+
+
+                <h5> Nom et prénom: {{ contact.user.nom  }} {{ contact.user.prenom  }}</h5>
+                    <p> De: {{ contact.user.email  }}</p>
+                    <p> Numéro de téléphone: {{ contact.user.telephone  }}</p>
+                    <p>Pour le poste de: {{ contact.annonce.poste  }}</p>
+                    <p class="mb-0">Message : {{ contact.message  }}</p>
+                </div>
+            </div>
 {% endfor %}
-</section>
+</div>
+        </div>
+    </div>
+
+
+
 {% endblock %}

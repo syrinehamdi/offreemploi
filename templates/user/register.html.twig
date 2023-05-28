@@ -2,21 +2,95 @@
 
 
 {% block body %}
-<section class="login-area pt-80px pb-80px position-relative">
-    <div class="shape-bg position-absolute top-0 left-0 w-100 h-100 opacity-2 z-index-n1"></div>
-    <div class="container">
-        {{ form_start(registrationForm, {"attr": {"class": "card card-item login-form"}}) }}
-             <div class="form-group">
-                            <button  id="send-message-btn" class="btn theme-btn w-100" type="submit">
-                                 {{form_widget(registrationForm.save)}} 
-                                <i class="la la-arrow-right icon ml-1"></i>
-                            </button>
-                        </div>
-        {{ form_end(registrationForm) }}
 
 
-       
-        <p class="text-black text-center fs-15">Vous avez un compte ? <a href="login.html" class="text-color hover-underline">Connexion</a></p>
-    </div><!-- end container -->
-</section>
+<br />
+
+  <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+    <h1 class="mb-5">
+Inscription    </h1>
+  </div>
+
+  <br />
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-6">
+        {% for message in app.flashes('_message') %}
+          <div class="alert alert-success">
+            {{ message }}
+          </div>
+        {% endfor %}
+        <div>
+          {{ form_start(registrationForm) }}
+
+          {{ form_label(registrationForm.nom) }}
+          <div class="text-danger">
+            {{ form_errors(registrationForm.nom) }}
+          </div>
+          {{ form_widget(registrationForm.nom) }}
+
+
+
+
+
+          {{ form_label(registrationForm.prenom) }}
+          <div class="text-danger">
+            {{ form_errors(registrationForm.prenom) }}
+          </div>
+          {{ form_widget(registrationForm.prenom) }}
+
+
+          {{ form_label(registrationForm.email) }}
+          <div class="text-danger">
+            {{ form_errors(registrationForm.email) }}
+          </div>
+          {{ form_widget(registrationForm.email) }}
+
+
+           {{ form_label(registrationForm.password) }}
+          <div class="text-danger">
+            {{ form_errors(registrationForm.password) }}
+          </div>
+          {{ form_widget(registrationForm.password) }}
+
+
+            <div class="fs-14 text-black fw-medium mb-0">
+            {{ form_label(registrationForm.telephone) }}
+            </div>
+            <div class="text-danger">
+              {{ form_errors(registrationForm.telephone) }}
+            </div><div>
+            {{ form_widget(registrationForm.telephone) }}</div>
+          
+
+          <div class="fs-14 text-black fw-medium mb-0">
+            {{ form_label(registrationForm.type) }}
+            </div>
+            <div class="text-danger">
+              {{ form_errors(registrationForm.type) }}
+            </div><div>
+            {{ form_widget(registrationForm.type) }}</div>
+          
+
+         
+          <br /><br />
+          <div class="row justify-content-between">
+            <div class="col-4"></div>
+            <div class="col-4">
+              {{form_widget(registrationForm.save)}}
+            </div>
+          </div>
+
+          {{ form_end(registrationForm) }}
+        </div><br>
+        <p class="text-black text-center fs-15">Vous avez un compte ? <a href="{{ url('login') }}" class="text-color hover-underline">Connexion</a></p>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
 {% endblock %}

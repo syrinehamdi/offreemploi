@@ -14,15 +14,17 @@ class FormModifType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
-            ->add('password', PasswordType::class)
-            ->add('nom')
-            ->add('prenom')
-            ->add('telephone')
-            ->add("save",SubmitType::class,["label"=>"Modifier", "attr"=>["class"=>"btn theme-btn"]
-            ])
-
-        ;
+            
+        ->add('email',null,  ["label"=>"Adresse email   ", "label_attr"=>["class"=>"fs-14 text-black fw-medium mb-0"], "attr"=>["class"=>"form-control"]])
+        ->add('password', PasswordType::class, ["label"=>"Mot de passe   ", "label_attr"=>["class"=>"fs-14 text-black fw-medium mb-0"], "attr"=>["class"=>"form-control"]])
+        ->add('nom',null,  ["label"=>"Nom   ", "label_attr"=>["class"=>"fs-14 text-black fw-medium mb-0"], "attr"=>["class"=>"form-control"]])
+        ->add('prenom',null,  ["label"=>"Prénom   ", "label_attr"=>["class"=>"fs-14 text-black fw-medium mb-0"], "attr"=>["class"=>"form-control"]])
+        ->add('telephone',null,  ["label"=>"Numéro de téléphone  ", "label_attr"=>["class"=>"fs-14 text-black fw-medium mb-0"], "attr"=>["class"=>"form-control"]])
+        
+        
+        ->add("save",SubmitType::class,["label"=>"Modifier", "attr"=>["class"=>"btn theme-btn"], "attr"=>["class"=>"btn btn-primary rounded-pill py-2 px-4"]
+        ])
+    ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

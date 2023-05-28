@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\ContactRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=ContactRepository::class)
@@ -20,7 +22,10 @@ class Contact
     
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * 
+     * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Saisir le message")
+     * @Assert\Length(min=15,minMessage="Saisir minimum 15 caractéres")
      */
     private $message;
 

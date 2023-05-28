@@ -1,24 +1,129 @@
+
 {% extends 'base.html.twig' %}
 
-
-
 {% block body %}
- liste des stages
+<br>
 
+<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+              
+                <h1 class="mb-5">Liste des stages</h1>
+            </div> 
 
-      <div class="section-title">
-          <h2>Toutes les stages : <span>{{ stages | length }} stages</span></h2>
+    <!-- Courses Start -->
+    <div class="container-xxl py-2">
+        <div class="container">
+            
+            <div class="row g-4 justify-content-center">
+                <div class=" wow fadeInUp" data-wow-delay="0.1s">
+                
+                    <div class="course-item  d-flex" >
+                       {% for stage in stages %}
+                       <div class="col-lg-4 bg-light m-2" >
+                       
+                        <div class="text-center p-4 pb-0">
+                            <h3 class="mb-0">Poste : {{ stage.poste  }}</h3>
+                            <div class="mb-3">
+                                
+                            </div>
+                            <h5 class="mb-4">Entreprise: {{ stage.entreprise  }}</h5>
+                        </div>
+                        <div class="d-flex border-top">
+                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>{{ stage.user.nom  }} {{ stage.user.prenom  }}</small>
+                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>{{ stage.dateAjout | date("m-d-Y")   }}</small>
+                          
+                        </div>
+                        
+                        <div class="d-flex border-top">
+                              <a href="{{ url ("detailAnnonce", {"slug": stage.poste | slug("-") | lower, "id": stage.id}) }}" class="flex-fill text-center border-end py-2">Détail</a>
+
+                        </div>
+                        </div>
+                          
+                        
+                       {% endfor %}
+                    </div>
+                       
+                        
+                    </div>
+                  
+                </div>
+      
+
+            </div>
         </div>
+    </div>
+<!-- Courses End -->
 
-
-        {% for stage in stages %}
-        poste : {{ stage.poste  }}<br>
-        salaire :{{ stage.salaire  }} Dt
-
-         <a href="{{ url ("detailAnnonce", {"slug": stage.poste | slug("-") | lower, "id": stage.id}) }}" class="book-a-table-btn scrollto">détail</a>
-
-
-        <hr>
-        {% endfor %}
 
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

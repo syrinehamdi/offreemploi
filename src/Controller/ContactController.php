@@ -26,12 +26,13 @@ class ContactController extends AbstractController
       /**
      * @Route("/createContact/{id}", name="createContact")
      */
-    public function createAnnonce(Request $request, EntityManagerInterface $manager,  $id, AnnonceRepository $repo)
+    public function createContact(Request $request, EntityManagerInterface $manager,  $id, AnnonceRepository $repo)
     {
 
         $contact = new Contact(); 
         $formContact = $this->createForm(FormContactType::class,$contact);
-        
+        $annonce = $manager->find(Annonce::class, $id);
+       // dd($annonce);
         $formContact->handleRequest($request);
 
         if($formContact->isSubmitted() and $formContact->isValid()){
@@ -47,12 +48,12 @@ class ContactController extends AbstractController
 
             $manager->persist($contact); 
            $manager->flush();
-            $this->addFlash("_message","Votre contact a bien été envoyée avec succée");
+            $this->addFlash("_message","Votre message a bien été envoyée avec succée");
             return $this->redirectToRoute("profil");
         }
 
 
-       return $this->render("contact/createContact.html.twig",["formContact"=>$formContact->createView()]);
+       return $this->render("contact/createContact.html.twig",[ "annonce"=>$annonce,"formContact"=>$formContact->createView()]);
     }
 
 
@@ -89,7 +90,7 @@ public function delete(Request $request, EntityManagerInterface $manager,  int $
 
     $manager->remove($contact);
     $manager->flush();
-
+    $this->addFlash("_message","Votre message a bien été supprimé avec succée");
     return $this->redirectToRoute("profil");
 }
 

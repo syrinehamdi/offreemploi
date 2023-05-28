@@ -1,41 +1,118 @@
+
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContactController!{% endblock %}
-
 {% block body %}
-<h1>Ajouter un Contact</h1>
-<br><br>
+  <br />
 
-<section class="question-area pt-80px pb-40px">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
+  <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+    <h1 class="mb-5">
+      Envoyer un contact
+    </h1>
+  </div>
 
-                {% for message in app.flashes("_message") %}
+  <br />
 
-                    <div class="alert alert-success">{{message}}
-                    </div>
-                {% endfor %}
-                <div class="card card-item">
-                         {{form_start(formContact,{"attr": {"class":"card-body"}})}}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-6">
+        {% for message in app.flashes('_message') %}
+          <div class="alert alert-success">
+            {{ message }}
+          </div>
+        {% endfor %}
 
-                        
-                         <div class="input-box pt-2">
-                            <div class="btn-box">
-                              {{form_widget(formContact.save)}} 
-                            </div>
-                        </div>
-                    {{ form_end(formContact)}}
+
                     
-                </div><!-- end card -->
-            </div><!-- end col-lg-8 -->
-        
-        
-        </div><!-- end row -->
-    </div><!-- end container -->
-</section><!-- end question-area -->
-<!-- ================================
-         END QUESTION AREA
-================================= -->
 
+<div class="row gy-2 gx-4 mb-4">
+
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Poste: {{ annonce.poste  }}</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Entreprise:  {{ annonce.entreprise  }}</p>
+                        </div>
+                         <div class="col-sm-6">
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Type de contrat:  {{ annonce.typeContrat  }}</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Salaire:  {{ annonce.salaire  }} Dt</p>
+                        </div>
+                        
+
+                    </div>
+                    
+                
+
+
+
+
+
+
+
+
+
+        <div>
+          {{ form_start(formContact) }}
+
+          {{ form_label(formContact.message) }}
+          <div class="text-danger">
+            {{ form_errors(formContact.message) }}
+          </div>
+          {{ form_widget(formContact.message) }}
+
+<br /><br />
+          <div class="row justify-content-between">
+            <div class="col-4"></div>
+            <div class="col-4">
+              {{form_widget(formContact.save)}}
+            </div>
+          </div>
+          {{ form_end(formContact) }}
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

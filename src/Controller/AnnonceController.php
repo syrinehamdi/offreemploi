@@ -59,7 +59,7 @@ class AnnonceController extends AbstractController
             $annonce->setUser($this->getUser());
             $manager->persist($annonce); 
             $manager->flush();
-            $this->addFlash("_message","Votre annonce a bien été publiée");
+            $this->addFlash("_message","Votre annonce a été publié avec succès");
             return $this->redirectToRoute("createAnnonce");
         }
 
@@ -98,7 +98,7 @@ public function delete(Request $request, EntityManagerInterface $manager,  int $
 
     $manager->remove($annonce);
     $manager->flush();
-
+    $this->addFlash("_message","Votre annonce a été supprimé avec succès");
     return $this->redirectToRoute("profil");
 }
     
@@ -123,7 +123,9 @@ public function modifAnnonce(?Annonce $annonce,Request $request, EntityManagerIn
        
         $manager->persist($annonce);
         $manager->flush();
+        $this->addFlash("_message","Votre annonce a été modifié avec succès");
         return $this->redirectToRoute("profil");
+        
     }
     return $this->render("annonce/create.html.twig", [
         "formAnnonce"=> $formAnnonce->createView(), "labelSubmit"=>"Modifier"

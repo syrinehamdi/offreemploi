@@ -2,27 +2,22 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity("email", message="Adresse email existe déjà")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     
-
-
-
-
-
-
-
-
 
 /**
      * @ORM\Id
@@ -33,7 +28,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-
+     * @Assert\NotBlank(message="Saisir l'adresse email")
+     * @Assert\Email(message = "L'adresse email est incorrect")
+     * 
      */
     private $email;
 
@@ -45,28 +42,37 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="Saisir le mot de passe")
+     * @Assert\Length(min=6,minMessage="Saisir minimum 6 caractéres")
 
      */
     private $password;
 
     /**
+     * 
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Saisir votre nom")
      */
     private $nom;
 
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Saisir votre prénom")
      */
     private $prenom;
 
      /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Choisissez le type")
      */
     private $type;
 
     /**
+     * 
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="Saisir le numéro de téléphone")
+     * @Assert\Length(min=8,minMessage="Saisir 8 chiffres", max=8, maxMessage="Saisir 8 chiffres")
      */
     private $telephone;
 
@@ -90,6 +96,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->annonces = new ArrayCollection();
         $this->contacts = new ArrayCollection();
         $this->user = new ArrayCollection();
+        if($this->getType()=='Candidat') $this->setRoles(['ROLE_CANDIDAT']);
+        else{
+            $this->setRoles(['ROLE_RECRUTEUR']);
+        }
     }
 
 

@@ -38,6 +38,7 @@ class UserController extends AbstractController
             $user->setPassword($password);
             $manager->persist($user);
             $manager->flush();
+            $this->addFlash("_message","Votre compte a été crée avec succès");
             return $this->redirectToRoute("login");
         }
         return $this->render("user/register.html.twig", [
@@ -73,7 +74,7 @@ class UserController extends AbstractController
     public function profil(AnnonceRepository $annonceRepository, ContactRepository $contactRepository): Response
     {
         $annonces = $annonceRepository-> findBy(array('user' => $this->getUser()));
-        $contacts = $contactRepository-> findBy(array('user' => $this->getUser()));
+        $contacts = $contactRepository-> findBy(array('user' => $this->getUser()),["dateAjout"=>"DESC"]);
 
         
         return $this->render('user/profil.html.twig',["annonces"=>$annonces, "contacts"=>$contacts]);
@@ -115,6 +116,7 @@ public function ModifierProfil(?User $user,Request $request, EntityManagerInterf
         $user->setPassword($password);
         $manager->persist($user);
         $manager->flush();
+        $this->addFlash("_message","Vos informations ont été modifié avec succès");
         return $this->redirectToRoute("profil");
     }
     return $this->render("user/ModifProfil.html.twig", [

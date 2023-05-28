@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\AnnonceRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\AnnonceRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass=AnnonceRepository::class)
@@ -19,33 +21,47 @@ class Annonce
      */
     private $id;
 
+
+
     /**
+     * 
      * @ORM\Column(type="string", length=255)
+     *
+     * 
      */
     private $poste;
 
+
+
+    
 /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Saisir le nom de l'entreprise")
      */
     private $entreprise;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Saisir la description du poste")
+     * @Assert\Length(min=15,minMessage="Saisir minimum 20 caractéres")
      */
     private $description;
 
     /**
+     * @Assert\NotBlank(message="Saisir l'adresse de l'entreprise")
      * @ORM\Column(type="string", length=255)
      */
     private $adresse;
 
     
     /**
+     * @Assert\NotBlank(message="Choisissez le type de contrat")
      * @ORM\Column(type="string", length=255)
      */
     private $typeContrat;
 
     /**
+     * @Assert\NotBlank(message="Saisir le salaire ")
      * @ORM\Column(type="integer")
      */
     private $salaire;
